@@ -1,0 +1,130 @@
+
+.ballot-header {
+    text-align: center;
+    background-color: #ffffff;
+    border-radius: 3px 3px 0 0;
+	color: #9d9d9d;
+	margin-left:-20px;
+	margin-right:-20px;		
+	box-shadow: 0 1px 4px rgba(68,68,68,0.2);
+}
+
+.ballot-header p{
+	margin-left: 20px;
+    margin-right: 20px;
+	padding-bottom: 30px;
+}
+
+.ballot-header h1 {
+    font-size: 50px;
+    line-height: 52px;
+    color: #716a72;
+    text-transform: uppercase;
+    font-family: 'source_sans_problack';
+    letter-spacing: 7px;
+}
+
+.ballot-header h2 {    
+    color: #716a72;    
+}
+
+.ballot-header h4 {    
+    color: #716a72;    
+}
+
+.ballot-header-login {
+	height:40px;
+	padding-top: 15px;
+	padding-right:30px;
+	text-align:right
+}
+
+.ballot-footer {
+	color: #8f8f8f;
+    background: #202020;
+    padding: 30px 0;    
+    text-align: center;
+    font-family: 'source_sans_problack';
+	margin-left:-20px;
+	margin-right:-20px;
+}
+
+.ballot-content {
+	background: #fff;
+    padding: 0px 20px;
+	margin-left:-20px;
+	margin-right:-20px;
+}
+
+.ballot-box {
+	margin: 8px;
+    padding: 5px;
+    background: #fff;
+    border: 0px solid #ccc;
+    font-size: 100%;
+    line-height: 1.4em;
+    float: left;
+}
+
+.ballot-box label {
+	margin-left:5px;
+	font-weight: 100;
+}
+
+#ballots {
+	font-size: 1em;
+    border-radius: 5px;
+    width: 960px;
+    background: #FFF;
+    padding: 20px;
+    margin: auto;
+    position: relative;
+    clear: both;
+}
+
+.ballots-col3 {
+	width:350px;
+}
+
+.ballot-sell-header h5{    
+    color: #716a72;    
+}
+
+.ballot-menu {    
+    text-align: center;
+	background-color: #f6f6f6;
+	padding-top:13px;
+	padding-bottom:13px;
+	margin-top: -6px;
+}
+
+.ballot-menu .navbar {
+    display: inline-block;
+    font-family: 'source_sans_prolight';
+    margin-bottom: 0;
+}
+
+.ballot-menu .navbar .nav > .active > a {
+	color: #c85b5f; 
+	background: none; 
+	background-image: none;
+}
+
+.ballot-menu .navbar .nav > .active > a:hover{
+	background: none; 
+	background-image: none; 
+	box-shadow: none;
+}
+
+.ballot-menu .navbar .nav > li > a {
+	color: #716a72; 
+	font-size: 16px; 
+	text-transform: uppercase; 	
+    text-shadow: none; 
+	box-shadow: none; 
+	letter-spacing: 3px;
+}
+
+.ballot-menu .navbar .nav > li > a:hover{
+	color: #c85b5f;
+}
