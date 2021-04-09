@@ -23,6 +23,12 @@ Class Admin_model extends CI_Model {
 		return true;
 	}
 	
+	public function changeverify($email=''){
+		$this->db->set('Verify', 1);
+		$this->db->where('email', $email);
+		$this->db->update('tb_user');
+		return true;
+	}
 	public function changePassword($email='', $pwd='') {
 		$this->db->set('pwd', md5($pwd));
 		$this->db->where('email', $email);
@@ -80,8 +86,7 @@ Class Admin_model extends CI_Model {
 		
 		if ($query->num_rows() > 0) {
 			$row = $query->row();
-		
-			$result = array('id'=>$row->id, 'name'=>$row->name, 'email'=>$row->email, 'password'=>$row->pwd, 'level'=>$row->level, 'score'=>$row->score, 'how_many'=>$row->info2, 'oscar_title' => $row->info1);
+			$result = array('id'=>$row->id, 'name'=>$row->name, 'email'=>$row->email, 'password'=>$row->pwd, 'level'=>$row->level, 'score'=>$row->score, 'how_many'=>$row->info2, 'oscar_title' => $row->info1 ,'Verify'=> $row->Verify);
 		}		
 		
 		return $result;		

@@ -23,8 +23,8 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 | a PHP script and you can easily do that on your own.
 |
 */
-$config['base_url'] = 'https://www.swanntechnologies.com/OscarsBallotPredictions/';
-
+//$config['base_url'] = 'https://www.swanntechnologies.com/OscarsBallotPredictions/';
+$config['base_url'] = 'http://localhost/oscaraward/';
 /*
 |--------------------------------------------------------------------------
 | Index File
@@ -35,7 +35,7 @@ $config['base_url'] = 'https://www.swanntechnologies.com/OscarsBallotPredictions
 | variable so that it is blank.
 |
 */
-$config['index_page'] = 'index.php';
+$config['index_page'] = '';
 
 /*
 |--------------------------------------------------------------------------
@@ -520,179 +520,171 @@ $config['rewrite_short_tags'] = FALSE;
 | Comma-separated:	'10.0.1.200,192.168.5.0/24'
 | Array:		array('10.0.1.200', '192.168.5.0/24')
 */
+
+
 $config['problems'] = array(
     		array('title'=>'Best Picture', 'score'=>10, 'data'=>array(
-				'Ford v Ferrari',
-                'The Irishman',
-                'Jojo Rabbit',
-                'Joker',
-                'Little Women',
-                'Marriage Story',
-                '1917',
-                'Once Upon a Time in Hollywood',
-                'Parasite'
+				'THE FATHER',
+                'JUDAS AND THE BLACK MESSIAH',
+                'MANK',
+                'MINARI',
+                'NOMADLAND',
+                'PROMISING YOUNG WOMAN',
+                'SOUND OF METAL',
+                'THE TRIAL OF THE CHICAGO 7',
 			)),
 			array('title'=>'Best Director', 'score'=>7, 'data'=>array(
-				'Martin Scorsese, “The Irishman” ',
-				'Todd Phillips, “Joker”',
-				'Sam Mendes, “1917”',
-				'Quentin Tarantino, “Once Upon a Time in Hollywood”',
-				'Bong Joon Ho, “Parasite”'
+				'Thomas Vinterberg, “ANOTHER ROUND” ',
+				'David Fincher, “MANK”',
+				'Lee Isaac Chung, “MINARI”',
+				'Chloe Zhao, “NOMADLAND”',
+				'Emerald Fennell, “PROMISING YOUNG WOMAN”'
 			)),
 			array('title'=>'Best Actor', 'score'=>7, 'data'=>array(
-				'Antonio Banderas “Pain and Glory”',
-				'Leonardo DiCaprio “Once Upon a Time in Hollywood”',
-				'Adam Driver “Marriage Story”',
-				'Joaquin Phoenix “Joker”',
-				'Jonathan Pryce “The Two Popes”'
+				'Riz Ahmed “Sound of Metal”',
+				'Chadwick Boseman “Ma Rainey black bottom”',
+				'Anthony Hopkins “The Father”',
+				'Gray Oldman “Mank”',
+				'Steven Yeun “Minari”'
 			)),
 			array('title'=>'Best Actress', 'score'=>7, 'data'=>array(
-				'Cynthia Erivo “Harriet”',
-				'Scarlett Johansson “Marriage Story”',
-				'Saoirse Ronan “Little Women”',
-				'Charlize Theron “Bombshell”',
-				'Renee Zellweger “Judy”',
+				'Vlola Davis “Ma Raineys Black Bottom”',
+				'Andra Day “The United States vs. Billie Holiday”',
+				'VANESSA KIRBY “Pieces of a Woman”',
+				'FRANCES MCDORMAND “Nomadland”',
+				'CAREY MULLIGAN “Promising Young Woman”',
 			)),
-			array('title'=>'Best Supporting Actor', 'score'=>6, 'data'=>array(
-				'Tom Hanks, “A Beautiful Day in the Neighborhood”',
-				'Anthony Hopkins, “The Two Popes”',
-				'Al Pacino, “The Irishman”',
-				'Joe Pesci, “The Irishman”',
-				'Brad Pitt, “Once Upon a Time in Hollywood”',
+			array('title'=>'Best Supporting Actor', 'score'=>7, 'data'=>array(
+				'SACHA BARON COHEN, “The Trial of the Chicago 7”',
+				'DANIEL KALUUYA, “Judas and the Black Messiah”',
+				'LESLIE ODOM, JR., “One Night in Miami...”',
+				'PAUL RACI, “Sound of Metal”',
+				'LAKEITH STANFIELD, “Judas and the Black Messiah”',
 			)),
-			array('title'=>'Best Supporting Actress', 'score'=>6, 'data'=>array(
-				'Kathy Bates, “Richard Jewell”',
-				'Laura Dern, “Marriage Story”',
-				'Scarlett Johannson, “Jojo Rabbit”',
-				'Florence Pugh, “Little Women”',
-				'Margot Robbie, “Bombshell”',
+			array('title'=>'Best Supporting Actress', 'score'=>7, 'data'=>array(
+				'MARIA BAKALOVA, “Borat Subsequent Moviefilm: Delivery of Prodigious Bribe to American Regime for Make Benefit Once Glorious Nation of Kazakhstan”',
+				'GLENN CLOSE, “Hillbilly Elegy”',
+				'OLIVIA COLMAN, “The Father”',
+				'AMANDA SEYFRIED, “Mank”',
+				'YUH-JUNG YOUN, “Minari”',
 			)),
 			array('title'=>'Best Original Screenplay', 'score'=>5, 'data'=>array(
-				'“Knives Out,” Rian Johnson',
-				'“Marriage Story,” Noah Baumbach',
-				'“1917,” Sam Mendes and Krysty Wilson-Cairns',
-				'“Once Upon a Time in Hollywood,” Quentin Tarantino',
-				'“Parasite,” Bong Joon-ho, Jin Won Han'
+				'“JUDAS AND THE BLACK MESSIAH,” Screenplay by Will Berson & Shaka King; Story by Will Berson & Shaka King and Kenny Lucas & Keith Lucas',
+				'“MINARI” Written by Lee Isaac Chung',
+				'“PROMISING YOUNG WOMAN” Written by Emerald Fennell',
+				'“SOUND OF METAL” Screenplay by Darius Marder & Abraham Marder; Story by Darius Marder & Derek Cianfrance',
+				'“THE TRIAL OF THE CHICAGO 7” Written by Aaron Sorkin'
 			)),
 			array('title'=>'Best Adapted Screenplay', 'score'=>5, 'data'=>array(
-				'“The Irishman,” Steven Zaillian',
-				'“Jojo Rabbit,” Taika Waititi',
-				'“Joker,” Todd Phillips, Scott Silver',
-				'“Just Mercy” Destin Daniel Cretton and Andrew Lanham',
-				'“Little Women,” Greta Gerwig',
-                '“The Two Popes,” Anthony McCarten'
+				'“BORAT SUBSEQUENT MOVIEFILM: DELIVERY OF PRODIGIOUS BRIBE TO AMERICAN REGIME FOR MAKE BENEFIT ONCE GLORIOUS NATION OF KAZAKHSTAN,” Screenplay by Sacha Baron Cohen & Anthony Hines & Dan Swimer & Peter Baynham & Erica Rivinoja & Dan Mazer & Jena Friedman & Lee Kern; Story by Sacha Baron Cohen & Anthony Hines & Dan Swimer & Nina Pedrad',
+				'“THE FATHER” Screenplay by Christopher Hampton and Florian Zeller',
+				'“NOMADLAND” Written for the screen by Chloé Zhao',
+				'“ONE NIGHT IN MIAMI...” Written for the screen by Ramin Bahrani',
 			)),
 			array('title'=>'Best Foreign Language Film', 'score'=>5, 'data'=>array(
-				'“Corpus Christi,” Jan Komasa',
-				'“Honeyland,” Tamara Kotevska, Ljubo Stefanov',
-				'“Les Miserables,” Ladj Ly',
-				'“Pain and Glory,” Pedro Almodovar',
-				'“Parasite,” Bong Joon Ho'
+				'“ANOTHER ROUND” Denmark',
+				'“BETTER DAYS” Hong Kong',
+				'“COLLECTIVE” Romania',
+				'“THE MAN WHO SOLD HIS SKIN” Tunisia',
+				'“QUO VADIS, AIDA?” Bosnia and Herzegovina'
 			)),
 			array('title'=>'Best Animated Feature', 'score'=>5, 'data'=>array(
-				'“How to Train Your Dragon: The Hidden World” Dean DeBlois',
-				'“I Lost My Body” Jeremy Clapin',
-				'“Klaus” Sergio Pablos',
-				'“Missing Link” Chris Butler',
-				'“Toy Story 4”  Josh Cooley'
+				'“ONWARD” Dan Scanlon and Kori Rae',
+				'“OVER THE MOON” Glen Keane, Gennie Rim and Peilin Chou',
+				'“A SHAUN THE SHEEP MOVIE: FARMAGEDDON” Richard Phelan, Will Becher and Paul Kewl',
+				'“SOUL” Pete Docter and Dana Murray',
+				'“WOLFWALKERS”  Tomm Moore, Ross Stewart, Paul Young and Stéphan Roelants'
 			)),
 			array('title'=>'Best Visual Effects', 'score'=>3, 'data'=>array(
-				'“Avengers Endgame”',
-				'“The Irishman”',
-				'“1917”',
-				'“The Lion King”',
-				'“Star Wars: The Rise of Skywalker”'
+				'“LOVE AND MONSTERS” Matt Sloan, Genevieve Camilleri, Matt Everitt and Brian Cox',
+				'“THE MIDNIGHT SKY” Matthew Kasmir, Christopher Lawrence, Max Solomon and David Watkins',
+				'“MULAN” Sean Faden, Anders Langlands, Seth Maury and Steve Ingram',
+				'“THE ONE AND ONLY IVAN” Nick Davis, Greg Fisher, Ben Jones and Santiago Colomo Martinez',
+				'“TENET” Andrew Jackson, David Lee, Andrew Lockley and Scott Fisher'
 			)),
 			array('title'=>'Best Film Editing', 'score'=>3, 'data'=>array(
-				'“Ford v Ferrari,” Michael McCusker, Andrew Buckland',
-				'“The Irishman,” Thelma Schoonmaker',
-				'“Jojo Rabbit,” Tom Eagles',
-				'“Joker,” Jeff Groth',
-				'“Parasite,” Jinmo Yang'
+				'“THE FATHER” Yorgos Lamprinos',
+				'“NOMADLAND” Chloé Zhao',
+				'“PROMISING YOUNG WOMAN” Frédéric Thoraval',
+				'“SOUND OF METAL” Mikkel E. G. Nielsen',
+				'“THE TRIAL OF THE CHICAGO 7” Alan Baumgarten'
 			)),
 			array('title'=>'Best Animated Short', 'score'=>2, 'data'=>array(
-				'“Dcera,” Daria Kashcheeva',
-				'“Hair Love,” Matthew A. Cherry',
-				'“Kitbull,” Rosana Sullivan',
-				'“Memorable,” Bruno Collet',
-				'“Sister,” Siqi Song'
+				'“BURROW” Madeline Sharafian and Michael Capbarat',
+				'“GENIUS LOCI” Adrien Mérigeau and Amaury Ovise',
+				'“IF ANYTHING HAPPENS I LOVE YOU” Will McCormack and Michael Govier',
+				'“OPERA” Erick Oh',
+				'“YES-PEOPLE” Gísli Darri Halldórsson and Arnar Gunnarsson'
 			)),
 			array('title'=>'Best Live Action Short', 'score'=>2, 'data'=>array(
-				'“Brotherhood,” Meryam Joobeur',
-				'“Nefta Football Club,” Yves Piat',
-				'“The Neighbors’ Window,” Marshall Curry',
-				'“Saria,” Bryan Buckley',
-				'“A Sister,” Delphine Girard'
+				'“FEELING THROUGH” Doug Roland and Susan Ruzenski',
+				'“THE LETTER ROOM” Elvira Lind and Sofia Sondervan',
+				'“THE PRESENT” Farah Nabulsi and Ossama Bawardi',
+				'“TWO DISTANT STRANGERS” Travon Free and Martin Desmond Roe',
+				'“WHITE EYE” Tomer Shushan and Shira Hochman'
 			)),
 			array('title'=>'Best Documentary Short Subject', 'score'=>2, 'data'=>array(
-				'“In the Absence,” Yi Seung-Jun and Gary Byung-Seok Kam',
-				'“Learning to Skateboard in a Warzone,” Carol Dysinger',
-				'“Life Overtakes Me,” Kristine Samuelson and John Haptas',
-				'“St. Louis Superman,” Smriti Mundhra and Sami Khan',
-				'“Walk Run Cha-Cha,” Laura Nix'
+				'“COLETTE” Anthony Giacchino and Alice Doyard',
+				'“A CONCERTO IS A CONVERSATION” Ben Proudfoot and Kris Bowers',
+				'“DO NOT SPLIT” Anders Hammer and Charlotte Cook',
+				'“HUNGER WARD” Skye Fitzgerald and Michael Scheuerman',
+				'“A LOVE SONG FOR LATASHA” Sophia Nahli Allison and Janice Duncan'
 			)),
 			array('title'=>'Best Original Score', 'score'=>3, 'data'=>array(
-				'“Joker,” Hildur Guðnadóttir',
-				'“Little Women,” Alexandre Desplat',
-				'“Marriage Story,” Randy Newman',
-				'“1917,” Thomas Newman',
-				'“Star Wars: The Rise of Skywalker,” John Williams*“The King,” Nicholas Britell'
+				'“DA 5 BLOODS” Terence Blanchard',
+				'“MANK” Trent Reznor and Atticus Ross',
+				'“MINARI” Emile Mosseri',
+				'“NEWS OF THE WORLD” James Newton Howard',
+				'“SOUL” Trent Reznor, Atticus Ross and Jon Batiste'
 			)),
 			array('title'=>'Best Original Song', 'score'=>3, 'data'=>array(
-				'“I Can’t Let You Throw Yourself Away,” “Toy Story 4”',
-				'“I’m Gonna Love Me Again,” “Rocketman”',
-				'“I’m Standing With You,” “Breakthrough”',
-				'“Into the Unknown,” “Frozen 2”',
-				'“Stand Up,” “Harriet”'
+				'“FIGHT FOR YOU” from Judas and the Black Messiah; Music by H.E.R. and Dernst Emile II; Lyric by H.E.R. and Tiara Thomas',
+				'“HEAR MY VOICE” from The Trial of the Chicago 7; Music by Daniel Pemberton; Lyric by Daniel Pemberton and Celeste Waite',
+				'“HUSAVIK” from Eurovision Song Contest: The Story of Fire Saga; Music and Lyric by Savan Kotecha, Fat Max Gsus and Rickard Göransson',
+				'“IO SÌ (SEEN)” from The Life Ahead (La Vita Davanti a Se); Music by Diane Warren; Lyric by Diane Warren and Laura Pausini',
+				'“SPEAK NOW” from One Night in Miami...; Music and Lyric by Leslie Odom, Jr. and Sam Ashworth'
 			)),
 			array('title'=>'Best Production Design', 'score'=>3, 'data'=>array(
-				'“The Irishman,” Bob Shaw and Regina Graves',
-				'“Jojo Rabbit,” Ra Vincent and Nora Sopkova',
-				'“1917,” Dennis Gassner and Lee Sandales',
-				'“Once Upon a Time in Hollywood,” Barbara Ling and Nancy Haigh',
-				'“Parasite,” Lee Ha-Jun and Cho Won Woo, Han Ga Ram, and Cho Hee)'
+				'“THE FATHER” Production Design: Peter Francis; Set Decoration: Cathy Featherstone',
+				'“MA RAINEYS BLACK BOTTOM” Production Design: Mark Ricker; Set Decoration: Karen OHara and Diana Stoughton',
+				'“MANK” Production Design: Donald Graham Burt; Set Decoration: Jan Pascale',
+				'“NEWS OF THE WORLD” Production Design: David Crank; Set Decoration: Elizabeth Keenan',
+				'“TENET” Production Design: Nathan Crowley; Set Decoration: Kathy Lucas'
 			)),
 			array('title'=>'Best Cinematography', 'score'=>3, 'data'=>array(
-				'“The Irishman,” Rodrigo Prieto',
-				'“Joker,” Lawrence Sher',
-				'“The Lighthouse,” Jarin Blaschke',
-				'“1917,” Roger Deakins',
-				'“Once Upon a Time in Hollywood,” Robert Richardson',
+				'“JUDAS AND THE BLACK MESSIAH” Sean Bobbitt',
+				'“MANK” Erik Messerschmidt',
+				'“NEWS OF THE WORLD” Dariusz Wolski',
+				'“NOMADLAND” Joshua James Richards',
+				'“THE TRIAL OF THE CHICAGO 7” Phedon Papamichael',
 			)),
 			array('title'=>'Best Costume Design', 'score'=>3, 'data'=>array(
-				'”The Irishman,” Sandy Powell, Christopher Peterson',
-				'“Jojo Rabbit,” Mayes C. Rubeo',
-				'“Joker,” Mark Bridges',
-				'“Little Women,” Jacqueline Durran',
-				'“Once Upon a Time in Hollywood,” Arianne Phillips'
+				'”EMMA” Alexandra Byrne',
+				'“MA RAINEYS BLACK BOTTOM” Ann Roth',
+				'“MANK” Trish Summerville',
+				'“MULAN” Bina Daigeler',
+				'“PINOCCHIO” Massimo Cantini Parrini'
 			)),
 			array('title'=>'Best Makeup and Hairstyling', 'score'=>3, 'data'=>array(
-				'“Bombshell”',
-                '“Joker”',
-                '“Judy”',
-                '“Maleficent: Mistress of Evil”',
-                '“1917”'
+				'“EMMA” Marese Langan, Laura Allen and Claudia Stolze',
+                '“HILLBILLY ELEGY” Eryn Krueger Mekash, Matthew Mungle and Patricia Dehaney',
+                '“MA RAINEYS BLACK BOTTOM” Sergio Lopez-Rivera, Mia Neal and Jamika Wilson',
+                '“MANK” Gigi Williams, Kimberley Spiteri and Colleen LaBaff',
+                '“PINOCCHIO” Mark Coulier, Dalia Colli and Francesco Pegoretti'
 			)),
 			array('title'=>'Best Documentary Feature', 'score'=>2, 'data'=>array(
-				'“American Factory,” Julia Rieichert, Steven Bognar',
-    			'“The Cave,” Feras Fayyad',
-				'“The Edge of Democracy,” Petra Costa',
-				'“For Sama,” Waad Al-Kateab, Edward Watts',
-				'“Honeyland,” Tamara Kotevska, Ljubo Stefanov'
+				'“COLLECTIVE” Alexander Nanau and Bianca Oana',
+    			'“CRIP CAMP” Nicole Newnham, Jim LeBrecht and Sara Bolder',
+				'“THE MOLE AGENT” Maite Alberdi and Marcela Santibáñez',
+				'“MY OCTOPUS TEACHER” Pippa Ehrlich, James Reed and Craig Foster',
+				'“TIME” Garrett Bradley, Lauren Domino and Kellen Quinn'
 			)),
-			array('title'=>'Best Sound Mixing', 'score'=>3, 'data'=>array(
-				'“Ad Astra”',
-				'“Ford v Ferrari”',
-				'“Joker”',
-				'“1917”',
-				'“Once Upon a Time in Hollywood”'
-				)),
-            array('title'=>'Best Sound Editing', 'score'=>2, 'data'=>array(
-    			'“Ford v Ferrari,” Don Sylvester',
-				'“Joker,” Alan Robert Murray',
-				'“1917,” Oliver Tarney, Rachel Tate',
-				'“Once Upon a Time in Hollywood,” Wylie Stateman',
-				'“Star Wars: The Rise of SkyWalker,” Matthew Wood, David Acord'
-			))
+			array('title'=>'Best Sound', 'score'=>3, 'data'=>array(
+				'“GREYHOUND” Warren Shaw, Michael Minkler, Beau Borders and David Wyman',
+				'“MANK” Ren Klyce, Jeremy Molod, David Parker, Nathan Nance and Drew Kunin',
+				'“NEWS OF THE WORLD” Oliver Tarney, Mike Prestwood Smith, William Miller and John Pritchett',
+				'“SOUL” Ren Klyce, Coya Elliott and David Parker',
+				'“SOUND OF METAL” Nicolas Becker, Jaime Baksht, Michellee Couttolenc, Carlos Cortés and Phillip Bladh'
+				))
 	);
 

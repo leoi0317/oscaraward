@@ -47,19 +47,114 @@
 
 <script>
 	var resizefunc = [];
-
+	var vkey=0;
+	var vemail;
 	var form_validate1 = $("#form_signin").validate({ ignore:[], rules:{
 			in_email:{required:true, email:true, minlength:0, maxlength:255},
 			in_pwd  :{required:true, minlength:0, maxlength:50}
 		}
+	});
+	var form_validate0 = $("#form_verify").validate({ ignore:[], rules:{
+		Private_Key:{required:true, minlength:3, maxlength:255},
+		}
+	});
+	var form_validatef = $("#form_forget").validate({ ignore:[], rules:{
+		in_email:{required:true, email:true, minlength:0, maxlength:255},
+		}
+	});
+
+	$('#form_forget').submit(function(event){
+		event.preventDefault();
+        if (form_validatef['successList'].length<1) return;
+		$.post( "<?php echo base_url();?>admin/forgetpassword", {email:$("#forget_email").val()}, function(data) {
+			var result = jQuery.parseJSON(data);
+			
+	    	if (result.state == false) {
+                toastr.clear();
+	    		toastr.options = {
+	    				  "closeButton": false,
+	    				  "debug": false,
+	    				  "newestOnTop": false,
+	    				  "progressBar": false,
+	    				  "positionClass": "toast-top-right",
+	    				  "preventDuplicates": false,
+	    				  "onclick": null,
+	    				  "showDuration": "300",
+	    				  "hideDuration": "1000",
+	    				  "timeOut": "5000",
+	    				  "extendedTimeOut": "1000",
+	    				  "showEasing": "swing",
+	    				  "hideEasing": "linear",
+	    				  "showMethod": "fadeIn",
+	    				  "hideMethod": "fadeOut"
+	    				};
+	    		toastr["error"](result.msg, "Verify Error");
+	    		
+	    	} else {
+	    		$("#regForm").unbind('submit').submit();
+				$("#forget-modal").modal('hide');
+				toastr["success"](result.msg, "Reset Your Password!");
+	    	}
+    	});
+	});
+
+	$('#form_verify').submit(function(event){
+		event.preventDefault();
+        if (form_validate0['successList'].length<1) return;
+		$.post( "<?php echo base_url();?>admin/userverify", {inputkey:$("#Private_Key").val(),key:vkey,email:vemail}, function(data) {
+			var result = jQuery.parseJSON(data);
+			
+	    	if (result.state == false) {
+                toastr.clear();
+	    		toastr.options = {
+	    				  "closeButton": false,
+	    				  "debug": false,
+	    				  "newestOnTop": false,
+	    				  "progressBar": false,
+	    				  "positionClass": "toast-top-right",
+	    				  "preventDuplicates": false,
+	    				  "onclick": null,
+	    				  "showDuration": "300",
+	    				  "hideDuration": "1000",
+	    				  "timeOut": "5000",
+	    				  "extendedTimeOut": "1000",
+	    				  "showEasing": "swing",
+	    				  "hideEasing": "linear",
+	    				  "showMethod": "fadeIn",
+	    				  "hideMethod": "fadeOut"
+	    				};
+	    		toastr["error"](result.msg, "Verify Error");
+	    		
+	    	} else {
+	    		$("#regForm").unbind('submit').submit();
+				$("#verify-modal").modal('hide');
+				$("#signin-modal").modal('show');
+				toastr["success"](result.msg, "Sended Your Private Key!");
+	    	}
+    	});
 	});
 
 	$("#form_signin").submit(function(event){
 		event.preventDefault();
         if (form_validate1['successList'].length<2) return;
 		$.post( "<?php echo base_url();?>admin/signIn", {email:$("#in_email").val(),pwd:$("#in_pwd").val()}, function(data) {
+
 			var result = jQuery.parseJSON(data);
-			
+			if(result.verify == false){
+    			$("#signin-modal").modal('hide');
+				var subjec = "Verify Key";
+				vemail=$("#in_email").val();
+				$.post( "<?php echo base_url();?>admin/send_email", {to:$("#in_email").val(),subject:subjec}, function(datae) {
+				var rlt = jQuery.parseJSON(datae);
+				if(rlt.state == false){
+					toastr["error"](result.msg, "Verify Send Message Error!");
+					return ;
+				}
+					vkey = rlt.message;
+				});
+				$("#verify-modal").modal('show');
+				return ;
+			}
 	    	if (result.state == false) {
                 toastr.clear();
 	    		toastr.options = {

@@ -55,28 +55,82 @@ class Admin extends CI_Controller {
 		}
 	}
 	
+	function sendmail($from , $to , $subject , $message){
+
+		$this->load->config('email');
+        $this->load->library('email');
+
+        $this->email->set_newline("\r\n");
+        $this->email->from($from);
+        $this->email->to($to);
+        $this->email->subject($subject);
+        $this->email->message($message);
+		$stat = false;
+        if ($this->email->send()) {
+            echo 'Your Email has successfully been sent.';
+			$stat = true;
+        } else {
+            show_error($this->email->print_debugger());
+        }
+		echo json_encode(array('state'=>$stat,'message'=>$message));
+	}
+
+	function forgetpassword(){
+		$email = $this->input->post('email');
+		$result = $this->admin_model->changePassword($email , "123456");
+
+		$from = "blue.apple30k@gmail.com";
+        $subject = "Your Password";
+        $message = "123456";
+
+		$this->sendmail($from , $email , $subject , $message);
+	}
+
+	function send_email() {
+		$from = "blue.apple30k@gmail.com";
+        $to = $this->input->post('to');
+        $subject = $this->input->post('subject');
+        $message = rand(1000,100000);
+		
+		$this->sendmail($from , $to , $subject , $message);
+    }
+
 	// action
-	
+	public function userverify(){
+		$email= $this->input->post('email');
+		$sval= $this->input->post('inputkey');
+		$vk = $this->input->post('key');
+		$rlt=false;
+		if($sval[0]==$vk[0]){
+			$rlt = $this->admin_model->changeverify($email);
+		}
+		echo json_encode(array('state'=>$rlt));
+	}
+
 	public function signIn() {
 		$email = $this->input->post('email');
 		$password = $this->input->post('pwd');
 		
 		$user_info = $this->admin_model->signIn($email, $password);
-		
 		// register user information into Session
-		$this->session->set_userdata('sign', $user_info);
-		
 		$state = $user_info!=null ? true : false;
 		$msg = !$state ? 'Your email or password is invalid.' : '';
 		
 		$url = base_url();
-		
 		if($user_info != null) {
 			if($user_info['level'] == "100")
 				$url = base_url().'admin/user';
 		}
+
+		if($user_info['Verify']==0 and $user_info!=null){
+			echo json_encode(array('state'=>$state, 'msg'=>$msg, 'url'=>$url , 'verify'=>false));
+			return ;
+		}
+
+		$this->session->set_userdata('sign', $user_info);
 		
-		echo json_encode(array('state'=>$state, 'msg'=>$msg, 'url'=>$url));
+		
+		echo json_encode(array('state'=>$state, 'msg'=>$msg, 'url'=>$url , 'verify'=>true));
 	}
 	
 	public function signOut() {

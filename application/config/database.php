@@ -81,8 +81,8 @@ $db['default'] = array(
 	// 'database' => 'ballot2017',
 
 	'hostname' => 'localhost',
-	'username' => 'ballot2018',
-	'password' => 'Admin2017@admin',
+	'username' => 'root',
+	'password' => '',
 	'database' => 'ballot2018',
 
 	'dbdriver' => 'mysqli',

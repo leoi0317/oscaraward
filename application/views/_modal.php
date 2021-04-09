@@ -24,6 +24,13 @@
 						</div>
 					</div>
 				</div>
+				<div class="row">
+					<div class="col-xs-12">
+						<div class="form-group">
+						<div><a href="#" data-toggle="modal" data-target="#forget-modal">Forget Password</a></div>
+						</div>
+					</div>
+				</div>
 			</div>
 			<div class="modal-footer">
 				<button type="button" class="btn btn-default waves-effect" data-dismiss="modal">Close</button>
@@ -34,6 +41,62 @@
 </div>
 </form>
 <!-------->	
+<!--forget password-->
+<form id="form_forget" action="<?php echo base_url();?>/admin/forgetpassword" method="post">
+<div id="forget-modal" class="modal fade bs-example-modal-sm" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+	<div class="modal-dialog modal-sm">
+		<div class="modal-content">
+			<div class="modal-header">
+				<button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+				<h3 class="modal-title">Forget Password</h3>
+			</div>
+			<div class="modal-body">
+				<div class="row">
+					<div class="col-xs-12">
+						<div class="form-group">
+							<label for="field-1" class="control-label">Email</label>
+							<input type="text" class="form-control" id="forget_email" name="in_email" placeholder="Email Address">
+						</div>
+					</div>							
+				</div>
+			</div>
+			<div class="modal-footer">
+				<button type="button" class="btn btn-default waves-effect" data-dismiss="modal">Close</button>
+				<button type="submit" class="btn btn-info waves-effect waves-light">Reset Password</button>
+			</div>
+		</div>
+	</div>
+</div>
+</form>
+
+<!---->
+<!--Email authentification-->
+<form id="form_verify" action="<?php echo base_url();?>/admin/userverify" method="post">
+<div id="verify-modal" class="modal fade bs-example-modal-sm" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+	<div class="modal-dialog modal-sm">
+		<div class="modal-content">
+			<div class="modal-header">
+				<button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+				<h3 class="modal-title">Email Authentication</h3>
+			</div>
+			<div class="modal-body">
+				<div class="row">
+					<div class="col-xs-12">
+						<div class="form-group">
+							<input type="password" class="form-control" id="Private_Key" name="Private_Key" placeholder="Private Key">
+						</div>
+					</div>							
+				</div>
+			</div>
+			<div class="modal-footer">
+				<button type="button" class="btn btn-default waves-effect" data-dismiss="modal">Close</button>
+				<button type="submit" class="btn btn-info waves-effect waves-light">Verify</button>
+			</div>
+		</div>
+	</div>
+</div>
+</form>
+<!----------->
 
 <!-- SignUp Modal -->
 <form id="form_signup" action="<?php echo base_url();?>/admin/signOut" method="post">

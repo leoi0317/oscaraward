@@ -13,7 +13,7 @@
 			<div style="margin-top:6px"><a href="#" data-toggle="modal" data-target="#change-modal">Change Password</a></div>
 		<?php }?>
 		</div>
-		<h2><? $year = date('Y'); 
+		<h2><?php $year = date('Y'); 
             $ends = array('th','st','nd','rd','th','th','th','th','th','th');
             if (($year % 100) >= 11 && ($year%100) <= 13)
                $abbreviation = 'th';
