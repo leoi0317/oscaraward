@@ -27,20 +27,27 @@
 				<div class="row">
 					<div class="col-xs-12">
 						<div class="form-group">
-						<div><a href="#" data-toggle="modal" data-target="#forget-modal">Forget Password</a></div>
+						<div><a href="#" data-toggle="modal" data-target="#forget-modal" data-dismiss="modal">Forget Password</a></div>
 						</div>
 					</div>
 				</div>
 			</div>
 			<div class="modal-footer">
-				<button type="button" class="btn btn-default waves-effect" data-dismiss="modal">Close</button>
+				<button type="button" class="btn btn-default waves-effect" data-dismiss="modal" >Close</button>
 				<button type="submit" class="btn btn-info waves-effect waves-light">Log In</button>
 			</div>
 		</div>
 	</div>
 </div>
 </form>
-<!-------->	
+<!-------->
+
+<div id="pending-modal" class="modal fade bs-example-modal-sm" data-backdrop="static" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+		<div id="loader-container" >
+			<p id="loadingText">Sending..</p>
+		</div>
+</div>
+
 <!--forget password-->
 <form id="form_forget" action="<?php echo base_url();?>/admin/forgetpassword" method="post">
 <div id="forget-modal" class="modal fade bs-example-modal-sm" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
@@ -54,15 +61,15 @@
 				<div class="row">
 					<div class="col-xs-12">
 						<div class="form-group">
-							<label for="field-1" class="control-label">Email</label>
+							<label for="field-1" class="control-label">Your Email Address</label>
 							<input type="text" class="form-control" id="forget_email" name="in_email" placeholder="Email Address">
 						</div>
 					</div>							
 				</div>
 			</div>
 			<div class="modal-footer">
-				<button type="button" class="btn btn-default waves-effect" data-dismiss="modal">Close</button>
-				<button type="submit" class="btn btn-info waves-effect waves-light">Reset Password</button>
+				<button type="button" class="btn btn-default waves-effect" data-dismiss="modal" data-toggle="modal" data-target="#signin-modal">Close</button>
+				<button type="submit" class="btn btn-info waves-effect waves-light" data-toggle="modal" data-target="#pending-modal">Reset Password</button>
 			</div>
 		</div>
 	</div>

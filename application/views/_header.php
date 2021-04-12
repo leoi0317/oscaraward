@@ -19,6 +19,7 @@
         <link href="<?php echo base_url()?>assets/css/icons.css" rel="stylesheet" type="text/css" />
         <link href="<?php echo base_url()?>assets/css/pages.css" rel="stylesheet" type="text/css" />
         <link href="<?php echo base_url()?>assets/css/menu.css" rel="stylesheet" type="text/css" />
+        <link href="<?php echo base_url()?>assets/css/myedit.css" rel="stylesheet" type="text/css"/>
         <link href="<?php echo base_url()?>assets/css/responsive.css" rel="stylesheet" type="text/css" />
 		<link href="<?php echo base_url()?>assets/plugins/custombox/dist/custombox.min.css" rel="stylesheet"/>
 		

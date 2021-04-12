@@ -55,27 +55,38 @@ class Admin extends CI_Controller {
 		}
 	}
 	
-	function sendmail($from , $to , $subject , $message){
+	public function sendmail($from , $to , $subject , $message){
 
-		$this->load->config('email');
-        $this->load->library('email');
+		$this->load->library('phpmailer_lib');
+		$mail = $this->phpmailer_lib->load();
+		
+		$auth = true;
 
-        $this->email->set_newline("\r\n");
-        $this->email->from($from);
-        $this->email->to($to);
-        $this->email->subject($subject);
-        $this->email->message($message);
-		$stat = false;
-        if ($this->email->send()) {
-            echo 'Your Email has successfully been sent.';
-			$stat = true;
-        } else {
-            show_error($this->email->print_debugger());
-        }
-		echo json_encode(array('state'=>$stat,'message'=>$message));
+		if ($auth) {
+			$mail->IsSMTP(); 
+			// $mail->SMTPAuth = true; 
+			$mail->SMTPSecure = "ssl"; 
+			$mail->Host = "mail.example.com"; 
+			$mail->Port = 465; 
+			$mail->Username = "blue.apple30k@gmail.com"; 
+			$mail->Password = "Pureness1201!"; 
+		}
+
+		$mail->addAddress($to);
+		$mail->SetFrom("blue.apple30k@gmail.com", "John Deo");
+		$mail->isHTML(true);
+		$mail->Subject = $subject;
+		$mail->Body = $message;
+
+		try {
+			$result = $mail->Send();
+			echo json_encode(array('state'=>$result,'message'=>$message));
+		} catch(Exception $e){
+			echo json_encode(array('state'=>false,'message'=>$message));
+		}
 	}
 
-	function forgetpassword(){
+	public function forgetpassword(){
 		$email = $this->input->post('email');
 		$result = $this->admin_model->changePassword($email , "123456");
 
@@ -86,7 +97,7 @@ class Admin extends CI_Controller {
 		$this->sendmail($from , $email , $subject , $message);
 	}
 
-	function send_email() {
+	public function send_email() {
 		$from = "blue.apple30k@gmail.com";
         $to = $this->input->post('to');
         $subject = $this->input->post('subject');
@@ -148,12 +159,10 @@ class Admin extends CI_Controller {
 			$state = false;
 			$msg = 'Sorry, email already exists.';
 		} else {
-			
 			$state = $this->admin_model->signUp($name, $email, $password);
-			$msg = !$state ? 'Error access to database.' : '';
-			
-			$user_info = $this->admin_model->signIn($email, $password);
-			$this->session->set_userdata('sign', $user_info);
+			$msg = !$state ? 'Error access to database.' : '';			
+			// $user_info = $this->admin_model->signIn($email, $password);
+			// $this->session->set_userdata('sign', $user_info);
 		}
 		
 		echo json_encode(array('state'=>$state, 'msg'=>$msg));

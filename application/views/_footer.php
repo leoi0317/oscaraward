@@ -64,6 +64,7 @@
 	});
 
 	$('#form_forget').submit(function(event){
+		$("#forget-modal").modal('hide');
 		event.preventDefault();
         if (form_validatef['successList'].length<1) return;
 		$.post( "<?php echo base_url();?>admin/forgetpassword", {email:$("#forget_email").val()}, function(data) {
@@ -88,13 +89,12 @@
 	    				  "showMethod": "fadeIn",
 	    				  "hideMethod": "fadeOut"
 	    				};
-	    		toastr["error"](result.msg, "Verify Error");
-	    		
+	    		toastr["error"](result.msg, "Sending message failed!");
 	    	} else {
 	    		$("#regForm").unbind('submit').submit();
-				$("#forget-modal").modal('hide');
-				toastr["success"](result.msg, "Reset Your Password!");
+				toastr["success"](result.msg, "Reseted Your Password!");
 	    	}
+			$("#pending-modal").modal('hide');
     	});
 	});
 
@@ -144,15 +144,18 @@
     			$("#signin-modal").modal('hide');
 				var subjec = "Verify Key";
 				vemail=$("#in_email").val();
+				$("#pending-modal").modal('show');
 				$.post( "<?php echo base_url();?>admin/send_email", {to:$("#in_email").val(),subject:subjec}, function(datae) {
-				var rlt = jQuery.parseJSON(datae);
-				if(rlt.state == false){
-					toastr["error"](result.msg, "Verify Send Message Error!");
-					return ;
-				}
+					var rlt = jQuery.parseJSON(datae);
+					$("#pending-modal").modal('hide');
+					if(rlt.state == false){
+						toastr["error"](result.msg, "Verify Send Message Error!");
+						return ;
+					}
 					vkey = rlt.message;
+					toastr["success"](result.msg, "Sended Your Private Key!");
+					$("#verify-modal").modal('show');
 				});
-				$("#verify-modal").modal('show');
 				return ;
 			}
 	    	if (result.state == false) {
