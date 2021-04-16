@@ -12,7 +12,7 @@
 					<div class="col-xs-12">
 						<div class="form-group">
 							<label for="field-1" class="control-label">Email</label>
-							<input type="text" class="form-control" id="in_email" name="in_email" placeholder="Email Address">
+							<input type="email" class="form-control" id="in_email" name="in_email" placeholder="Email Address">
 						</div>
 					</div>							
 				</div>
@@ -27,7 +27,7 @@
 				<div class="row">
 					<div class="col-xs-12">
 						<div class="form-group">
-						<div><a href="#" data-toggle="modal" data-target="#forget-modal" data-dismiss="modal">Forget Password</a></div>
+						<div><a href="#" data-dismiss="modal" data-toggle="modal" data-target="#forget-modal">Forget Password</a></div>
 						</div>
 					</div>
 				</div>
@@ -50,7 +50,7 @@
 
 <!--forget password-->
 <form id="form_forget" action="<?php echo base_url();?>/admin/forgetpassword" method="post">
-<div id="forget-modal" class="modal fade bs-example-modal-sm" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+<div id="forget-modal" class="modal fade bs-example-modal-sm" data-backdrop="static" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
 	<div class="modal-dialog modal-sm">
 		<div class="modal-content">
 			<div class="modal-header">
@@ -64,12 +64,12 @@
 							<label for="field-1" class="control-label">Your Email Address</label>
 							<input type="text" class="form-control" id="forget_email" name="in_email" placeholder="Email Address">
 						</div>
-					</div>							
+					</div>
 				</div>
 			</div>
 			<div class="modal-footer">
 				<button type="button" class="btn btn-default waves-effect" data-dismiss="modal" data-toggle="modal" data-target="#signin-modal">Close</button>
-				<button type="submit" class="btn btn-info waves-effect waves-light" data-toggle="modal" data-target="#pending-modal">Reset Password</button>
+				<button type="submit" class="btn btn-info waves-effect waves-light">Reset Password</button>
 			</div>
 		</div>
 	</div>
@@ -79,7 +79,7 @@
 <!---->
 <!--Email authentification-->
 <form id="form_verify" action="<?php echo base_url();?>/admin/userverify" method="post">
-<div id="verify-modal" class="modal fade bs-example-modal-sm" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+<div id="verify-modal" class="modal fade bs-example-modal-sm" data-backdrop="static" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
 	<div class="modal-dialog modal-sm">
 		<div class="modal-content">
 			<div class="modal-header">
@@ -96,7 +96,7 @@
 				</div>
 			</div>
 			<div class="modal-footer">
-				<button type="button" class="btn btn-default waves-effect" data-dismiss="modal">Close</button>
+				<button type="button" class="btn btn-default waves-effect" data-dismiss="modal">Skip</button>
 				<button type="submit" class="btn btn-info waves-effect waves-light">Verify</button>
 			</div>
 		</div>
@@ -107,7 +107,7 @@
 
 <!-- SignUp Modal -->
 <form id="form_signup" action="<?php echo base_url();?>/admin/signOut" method="post">
-<div id="signup-modal" class="modal fade bs-example-modal-sm" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" style="display: none;">
+<div id="signup-modal" class="modal fade bs-example-modal-sm" data-backdrop="static" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" style="display: none;">
 	<div class="modal-dialog modal-sm">
 		<div class="modal-content">
 			<div class="modal-header">
@@ -127,7 +127,7 @@
 					<div class="col-xs-12">
 						<div class="form-group">
 							<label for="field-1" class="control-label">Email</label>
-							<input type="text" class="form-control" id="up_email" name="up_email" placeholder="Email Address">
+							<input type="email" class="form-control" id="up_email" name="up_email" placeholder="Email Address">
 						</div>
 					</div>							
 				</div>

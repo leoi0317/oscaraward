@@ -25,7 +25,7 @@ class PHPMailer_Lib
         require_once APPPATH.'third_party/PHPMailer/PHPMailer.php';
         require_once APPPATH.'third_party/PHPMailer/SMTP.php';
         
-        $mail = new PHPMailer;
+        $mail = new PHPMailer(true);
         return $mail;
     }
 }

@@ -8,7 +8,8 @@ class Admin extends CI_Controller {
 		parent::__construct();
 		
 		$this->load->model('admin_model');
-    
+		$this->load->helper('email');
+
 		if (isset($this->session->userdata['sign'])) {
 			$userInfo = $this->admin_model->getUserCurInfo();
 			$this->session->set_userdata('sign', $userInfo);
@@ -55,46 +56,30 @@ class Admin extends CI_Controller {
 		}
 	}
 	
-	public function sendmail($from , $to , $subject , $message){
-
-		$this->load->library('phpmailer_lib');
-		$mail = $this->phpmailer_lib->load();
-		
-		$auth = true;
-
-		if ($auth) {
-			$mail->IsSMTP(); 
-			// $mail->SMTPAuth = true; 
-			$mail->SMTPSecure = "ssl"; 
-			$mail->Host = "mail.example.com"; 
-			$mail->Port = 465; 
-			$mail->Username = "blue.apple30k@gmail.com"; 
-			$mail->Password = "Pureness1201!"; 
-		}
-
-		$mail->addAddress($to);
-		$mail->SetFrom("blue.apple30k@gmail.com", "John Deo");
-		$mail->isHTML(true);
-		$mail->Subject = $subject;
-		$mail->Body = $message;
-
-		try {
-			$result = $mail->Send();
-			echo json_encode(array('state'=>$result,'message'=>$message));
-		} catch(Exception $e){
-			echo json_encode(array('state'=>false,'message'=>$message));
-		}
-	}
-
 	public function forgetpassword(){
 		$email = $this->input->post('email');
-		$result = $this->admin_model->changePassword($email , "123456");
+		$result = $this->admin_model->isExistEmail($email);
+
+		$msg1=$this->check_email($email);
+		if($msg1!='true')
+		{
+			$url = base_url().'admin/user';
+			echo json_encode(array('state'=>false, 'msg'=>$msg1, 'url'=>$url , 'verify'=>false));
+			return ;
+		}
+
+		if($result==false){
+			echo json_encode(array('state'=>false,'msg'=>"Email is not Exist!",'isemail'=>$result));
+			return ;
+		}
+
+		$this->admin_model->changePassword($email , "123456");
 
 		$from = "blue.apple30k@gmail.com";
         $subject = "Your Password";
-        $message = "123456";
-
-		$this->sendmail($from , $email , $subject , $message);
+        $message = rand(1000,100000);
+		$result1=$this->admin_model->send_email($from , $email , $subject , $message);
+		echo json_encode(array('state'=>$result1,'isemail'=>$result , 'msg'=>"Sucess Set password!"));
 	}
 
 	public function send_email() {
@@ -102,8 +87,8 @@ class Admin extends CI_Controller {
         $to = $this->input->post('to');
         $subject = $this->input->post('subject');
         $message = rand(1000,100000);
-		
-		$this->sendmail($from , $to , $subject , $message);
+		$result=$this->admin_model->send_email($from , $to , $subject , $message);
+		echo json_encode(array('state'=>$result,'message'=>$message));
     }
 
 	// action
@@ -118,10 +103,59 @@ class Admin extends CI_Controller {
 		echo json_encode(array('state'=>$rlt));
 	}
 
+	private static function get_banned_domains()
+    {
+        //where we store the banned domains
+        $file = 'banned_domains.json';
+
+        //if the json file is not in local or the file exists but is older than 1 week, regenerate the json
+        if (!file_exists($file) OR (file_exists($file) AND filemtime($file) < strtotime('-1 week')) )
+        {
+            $banned_domains = file_get_contents("https://rawgit.com/ivolo/disposable-email-domains/master/index.json");
+            if ($banned_domains !== FALSE)
+                file_put_contents($file,$banned_domains,LOCK_EX);
+        }
+        else//get the domains from the file
+            $banned_domains = file_get_contents($file);
+
+        return json_decode($banned_domains);
+    }
+
+	public function check_email($email){
+        //get the email to check up, clean it
+        $email = filter_var($email,FILTER_SANITIZE_STRING);
+
+        // 1 - check valid email format using RFC 822
+        if (filter_var($email, FILTER_VALIDATE_EMAIL)===FALSE) 
+            return 'No valid email format';
+
+        //get email domain to work in nexts checks
+        $email_domain = preg_replace('/^[^@]++@/', '', $email);
+
+        // 2 - check if its from banned domains.
+        // if (in_array($email_domain,self::get_banned_domains()))
+        //     return 'Banned domain '.$email_domain;
+
+        // 3 - check DNS for MX records
+        if ((bool) checkdnsrr($email_domain, 'MX')==FALSE)
+            return 'DNS MX not found for domain '.$email_domain;
+		
+        // 4 - wow actually a real email! congrats ;)
+        return 'true';
+	}
+
 	public function signIn() {
 		$email = $this->input->post('email');
 		$password = $this->input->post('pwd');
-		
+
+		$msg1=$this->check_email($email);
+		if($msg1!='true')
+		{
+			$url = base_url().'admin/user';
+			echo json_encode(array('state'=>false, 'msg'=>$msg1, 'url'=>$url , 'verify'=>false));
+			return ;
+		}
+
 		$user_info = $this->admin_model->signIn($email, $password);
 		// register user information into Session
 		$state = $user_info!=null ? true : false;
@@ -140,7 +174,6 @@ class Admin extends CI_Controller {
 
 		$this->session->set_userdata('sign', $user_info);
 		
-		
 		echo json_encode(array('state'=>$state, 'msg'=>$msg, 'url'=>$url , 'verify'=>true));
 	}
 	
@@ -153,10 +186,18 @@ class Admin extends CI_Controller {
 		$name = $this->input->post('name');
 		$email = $this->input->post('email');
 		$password = $this->input->post('pwd');
-		
-		if ( $this->admin_model->isExistEmail($email) ) {
-			
-			$state = false;
+
+		$msg1=$this->check_email($email);
+
+		if($msg1!='true')
+		{
+			$url = base_url().'admin/user';
+			echo json_encode(array('state'=>false, 'msg'=>$msg1,));
+			return ;
+		}
+
+		if ( $this->admin_model->isExistEmail($email) ) {			
+			$state = false; 
 			$msg = 'Sorry, email already exists.';
 		} else {
 			$state = $this->admin_model->signUp($name, $email, $password);

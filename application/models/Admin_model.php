@@ -13,6 +13,39 @@ Class Admin_model extends CI_Model {
 		return null;
 	}
 	
+	public function send_email($from , $to , $subject , $message){
+
+		$this->load->library('phpmailer_lib');
+		$mail = $this->phpmailer_lib->load();
+
+		$mail->IsSMTP(); 
+		$mail->SMTPAuth = true; 
+
+		$mail->SMTPDebug = 3;
+		$mail->Debugoutput = 'html';
+
+		$mail->SMTPSecure = "tls"; 
+		$mail->Host = "smtp.gmail.com"; 
+		$mail->Port = 587; 
+		$mail->Username = "rigingstar.dev@gmail.com"; 
+		$mail->Password = "Aodcu.ggl$";
+		
+		$mail->FromName = "rigingstar.dev@gmail.com";
+		$mail->addAddress($to);
+		$mail->AddReplyTo("blue.apple30k@gmail.com", 'Wale');
+
+		$mail->SetFrom("rigingstar.dev@gmail.com", "John Deo");
+		$mail->isHTML(true);
+		$mail->Subject = $subject;
+		$mail->Body = $message;
+
+		try {
+			return $result = $mail->Send();
+		} catch(Exception $e){
+			return false;
+		}
+	}
+
 	public function signUp($name='', $email='', $pwd='') {
 		$this->db->set('pwd', md5($pwd));
 		$this->db->set('email', $email);
@@ -51,7 +84,7 @@ Class Admin_model extends CI_Model {
 		
 		$query = "SELECT id FROM tb_user WHERE email='$email'";
 		$query = $this->db->query($query);
-	
+		
 		return $query->num_rows()>0 ? true : false;
 	}
 

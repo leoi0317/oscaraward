@@ -542,7 +542,7 @@ $config['problems'] = array(
 			)),
 			array('title'=>'Best Actor', 'score'=>7, 'data'=>array(
 				'Riz Ahmed “Sound of Metal”',
-				'Chadwick Boseman “Ma Rainey black bottom”',
+				'Chadwick Boseman “Ma Raineys black bottom”',
 				'Anthony Hopkins “The Father”',
 				'Gray Oldman “Mank”',
 				'Steven Yeun “Minari”'
